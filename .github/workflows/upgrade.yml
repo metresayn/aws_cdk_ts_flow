@@ -54,7 +54,8 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
       - name: Set auth token
-        run: git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+        run: |-
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
       - name: Create Pull Request
         id: create-pr
         uses: peter-evans/create-pull-request@v4
