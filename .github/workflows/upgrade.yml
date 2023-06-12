@@ -51,8 +51,10 @@ jobs:
         run: '[ -s ${{ runner.temp }}/.repo.patch ] && git apply ${{ runner.temp }}/.repo.patch || echo "Empty patch. Skipping."'
       - name: Set git identity
         run: |-
-          git config user.name "metresayn"
-          git config user.email "sn.metre@gmail.com"
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+      - name: Set auth token
+        run: git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
       - name: Create Pull Request
         id: create-pr
         uses: peter-evans/create-pull-request@v4
